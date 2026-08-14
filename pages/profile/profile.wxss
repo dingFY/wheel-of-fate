@@ -1,0 +1,358 @@
+.mine-page {
+  min-height: 100vh;
+  padding: 38rpx 28rpx 60rpx;
+  background: #fff7ef;
+}
+
+.mine-header {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+}
+
+.mine-avatar {
+  width: 82rpx;
+  height: 82rpx;
+  text-align: center;
+  line-height: 82rpx;
+  border-radius: 26rpx;
+  background: #ffcf47;
+  font-size: 44rpx;
+}
+
+.mine-title {
+  font-size: 40rpx;
+  font-weight: 800;
+}
+
+.mine-sub {
+  margin-top: 6rpx;
+  color: #a18578;
+  font-size: 23rpx;
+}
+
+.profile-tabs {
+  display: flex;
+  justify-content: space-around;
+  padding: 28rpx 0 10rpx;
+  margin-top: 28rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(82, 45, 24, .06);
+}
+
+.tab-item {
+  position: relative;
+  padding: 12rpx 18rpx;
+  color: #8c766b;
+  font-size: 27rpx;
+  font-weight: 700;
+}
+
+.tab-item.tab-active {
+  color: #ee5b57;
+}
+
+.tab-item.tab-active::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -6rpx;
+  width: 36rpx;
+  height: 6rpx;
+  transform: translateX(-50%);
+  background: #ee5b57;
+  border-radius: 999rpx;
+}
+
+.tab-count {
+  margin-left: 4rpx;
+  color: #b09b8d;
+  font-size: 22rpx;
+  font-weight: 400;
+}
+
+.tab-active .tab-count {
+  color: #ee5b57;
+}
+
+.tab-panel {
+  margin-top: 24rpx;
+}
+
+.wheel-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  padding: 24rpx;
+  margin-bottom: 18rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(82, 45, 24, .06);
+}
+
+.wheel-item-icon {
+  width: 78rpx;
+  height: 78rpx;
+  text-align: center;
+  line-height: 78rpx;
+  border-radius: 24rpx;
+  background: #fff0d8;
+  font-size: 42rpx;
+}
+
+.wheel-item-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.wheel-item-name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.wheel-item-desc {
+  margin-top: 7rpx;
+  color: #e56b51;
+  font-size: 23rpx;
+}
+
+.wheel-item-time {
+  margin-top: 6rpx;
+  color: #b19b8d;
+  font-size: 20rpx;
+}
+
+.wheel-item-actions {
+  position: absolute;
+  top: 50%;
+  right: 20rpx;
+  transform: translateY(-50%);
+}
+
+.wheel-delete {
+  padding: 8rpx 14rpx;
+  color: #df6a57;
+  background: #fff0e8;
+  border-radius: 999rpx;
+  font-size: 21rpx;
+}
+
+.empty-mine {
+  padding: 150rpx 0;
+  color: #a88f81;
+  text-align: center;
+  font-size: 29rpx;
+}
+
+.empty-icon {
+  margin-bottom: 18rpx;
+  font-size: 78rpx;
+}
+
+.empty-sub {
+  margin-top: 10rpx;
+  color: #c2aea2;
+  font-size: 23rpx;
+}
+
+.feedback-row {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 24rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 8rpx 24rpx rgba(82, 45, 24, .06);
+}
+
+.feedback-row {
+  position: relative;
+}
+
+.contact-overlay {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  opacity: 0;
+}
+
+.contact-overlay::after {
+  border: none;
+}
+
+.feedback-icon {
+  width: 74rpx;
+  height: 74rpx;
+  text-align: center;
+  line-height: 74rpx;
+  border-radius: 22rpx;
+  background: #f0e8ff;
+  font-size: 40rpx;
+}
+
+.feedback-info {
+  flex: 1;
+}
+
+.feedback-name {
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.feedback-desc {
+  margin-top: 6rpx;
+  color: #9b7f72;
+  font-size: 23rpx;
+  white-space: nowrap;
+}
+
+.feedback-arrow {
+  color: #c4afa5;
+  font-size: 36rpx;
+}
+
+/* 历史记录 */
+.history-item {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  padding: 20rpx 24rpx;
+  margin-bottom: 12rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 16rpx rgba(82, 45, 24, .05);
+}
+
+.history-icon {
+  flex: 0 0 56rpx;
+  width: 56rpx;
+  height: 56rpx;
+  text-align: center;
+  line-height: 56rpx;
+  border-radius: 18rpx;
+  background: #fff0d8;
+  font-size: 32rpx;
+}
+
+.history-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-result {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #e45345;
+  font-size: 30rpx;
+  font-weight: 700;
+}
+
+.history-meta {
+  margin-top: 6rpx;
+  color: #b09b8d;
+  font-size: 22rpx;
+}
+
+.history-delete {
+  flex: 0 0 48rpx;
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #d6b8aa;
+  font-size: 36rpx;
+}
+
+.clear-history {
+  padding: 16rpx 0;
+  color: #c4afa5;
+  text-align: center;
+  font-size: 24rpx;
+}
+
+/* 改名按钮 */
+.wheel-rename {
+  padding: 8rpx 14rpx;
+  color: #6a8cdf;
+  background: #eef1ff;
+  border-radius: 999rpx;
+  font-size: 21rpx;
+  margin-bottom: 10rpx;
+}
+
+/* 弹窗复用 play 页样式，需在此补充 */
+.modal-mask {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(36, 28, 33, .42);
+}
+
+.add-modal {
+  width: calc(100% - 56rpx);
+  box-sizing: border-box;
+  padding: 36rpx 28rpx 50rpx;
+  background: #fff;
+  border-radius: 32rpx;
+}
+
+.modal-title {
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.name-input {
+  height: 86rpx;
+  padding: 0 24rpx;
+  margin-top: 26rpx;
+  background: #fff7ef;
+  border-radius: 18rpx;
+  font-size: 28rpx;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 30rpx;
+}
+
+.cancel-button,
+.confirm-button {
+  flex: 1;
+  height: 76rpx;
+  padding: 0;
+  border-radius: 999rpx;
+  font-size: 28rpx;
+  line-height: 76rpx;
+}
+
+.cancel-button {
+  color: #806d63;
+  background: #f6eee9;
+}
+
+.confirm-button {
+  color: #fff;
+  background: #ee5b57;
+}
+
+.cancel-button::after,
+.confirm-button::after {
+  border: none;
+}

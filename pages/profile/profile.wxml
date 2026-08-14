@@ -1,0 +1,117 @@
+<view class="mine-page">
+  <view class="mine-header">
+    <view class="mine-avatar">🎡</view>
+    <view>
+      <view class="mine-title">我的</view>
+      <view class="mine-sub">保存的玩法与抽签记录</view>
+    </view>
+  </view>
+
+  <!-- 顶部 Tab -->
+  <view class="profile-tabs">
+    <view class="tab-item {{activeTab === 'wheels' ? 'tab-active' : ''}}" data-tab="wheels" bindtap="switchTab">
+      常用转盘 <text class="tab-count">{{wheels.length}}</text>
+    </view>
+    <view class="tab-item {{activeTab === 'history' ? 'tab-active' : ''}}" data-tab="history" bindtap="switchTab">
+      转盘记录 <text class="tab-count">{{history.length}}</text>
+    </view>
+    <view class="tab-item {{activeTab === 'stories' ? 'tab-active' : ''}}" data-tab="stories" bindtap="switchTab">
+      我的剧本 <text class="tab-count">{{stories.length}}</text>
+    </view>
+    <view class="tab-item {{activeTab === 'more' ? 'tab-active' : ''}}" data-tab="more" bindtap="switchTab">更多</view>
+  </view>
+
+  <!-- Tab 1：常用转盘 -->
+  <view wx:if="{{activeTab === 'wheels'}}" class="tab-panel">
+    <block wx:if="{{wheels.length}}">
+      <block wx:for="{{wheels}}" wx:key="id">
+        <view class="wheel-item" data-id="{{item.id}}" bindtap="openWheel">
+          <view class="wheel-item-icon">{{item.icon}}</view>
+          <view class="wheel-item-info">
+            <view class="wheel-item-name">{{item.name}}</view>
+            <view class="wheel-item-desc">{{item.modeName}} · {{item.options.length}} 个选项</view>
+            <view class="wheel-item-time">更新于 {{item.updatedAt}}</view>
+          </view>
+          <view class="wheel-item-actions">
+            <view class="wheel-rename" data-id="{{item.id}}" catchtap="renameWheel">改名</view>
+            <view class="wheel-delete" data-id="{{item.id}}" catchtap="deleteWheel">删除</view>
+          </view>
+        </view>
+      </block>
+    </block>
+    <view wx:else class="empty-mine">
+      <view class="empty-icon">🎠</view>
+      <view>还没有常用转盘</view>
+      <view class="empty-sub">在具体玩法页点击"保存为常用转盘"</view>
+    </view>
+  </view>
+
+  <!-- Tab 2：最近记录 -->
+  <view wx:if="{{activeTab === 'history'}}" class="tab-panel">
+    <block wx:if="{{history.length}}">
+      <block wx:for="{{history}}" wx:key="id">
+        <view class="history-item">
+          <view class="history-icon">{{item.modeIcon}}</view>
+          <view class="history-info">
+            <view class="history-result">{{item.resultName}}</view>
+            <view class="history-meta">{{item.modeName}} · {{item.time}}</view>
+          </view>
+          <view class="history-delete" data-id="{{item.id}}" catchtap="deleteHistory">×</view>
+        </view>
+      </block>
+      <view class="clear-history" bindtap="clearHistory">清空记录</view>
+    </block>
+    <view wx:else class="empty-mine">
+      <view class="empty-icon">📋</view>
+      <view>还没有抽签记录</view>
+      <view class="empty-sub">转盘转起来，记录自动保存</view>
+    </view>
+  </view>
+
+  <!-- Tab 3：我的剧本 -->
+  <view wx:if="{{activeTab === 'stories'}}" class="tab-panel">
+    <block wx:if="{{stories.length}}">
+      <block wx:for="{{stories}}" wx:key="id">
+        <view class="history-item" data-id="{{item.id}}" bindtap="openStory">
+          <view class="history-icon">🎭</view>
+          <view class="history-info">
+            <view class="history-result">{{item.title}}</view>
+            <view class="history-meta">{{item.companion}} · {{item.time}} · {{item.createdAt}}</view>
+          </view>
+          <view class="history-delete" data-id="{{item.id}}" catchtap="deleteStory">×</view>
+        </view>
+      </block>
+      <view class="clear-history" bindtap="clearStories">清空剧本</view>
+    </block>
+    <view wx:else class="empty-mine">
+      <view class="empty-icon">🎬</view>
+      <view>还没有剧本</view>
+      <view class="empty-sub">在命运剧情页点击"接受命运"即可保存</view>
+    </view>
+  </view>
+
+  <!-- Tab 4：更多 -->
+  <view wx:if="{{activeTab === 'more'}}" class="tab-panel">
+    <view class="feedback-row">
+      <view class="feedback-icon">💬</view>
+      <view class="feedback-info">
+        <view class="feedback-name">提意见</view>
+        <view class="feedback-desc">Bug、建议、吐槽直接说</view>
+      </view>
+      <view class="feedback-arrow">›</view>
+      <button class="contact-overlay" open-type="contact" show-message-card send-message-title="用户反馈" send-message-path="pages/profile/profile"></button>
+    </view>
+  </view>
+
+  <!-- 重命名弹窗 -->
+  <view wx:if="{{showRenameModal}}" class="modal-mask" catchtap="hideRenameModal">
+    <view class="add-modal" catchtap="stopPropagation">
+      <view class="modal-title">给转盘改个名</view>
+      <input class="name-input" focus value="{{renamingName}}" placeholder="输入新名称" bindinput="onRenameInput" bindconfirm="confirmRename" />
+      <view class="modal-actions">
+        <button class="cancel-button" bindtap="hideRenameModal">取消</button>
+        <button class="confirm-button" bindtap="confirmRename">确认</button>
+      </view>
+    </view>
+  </view>
+</view>

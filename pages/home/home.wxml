@@ -1,0 +1,32 @@
+<view class="category-page">
+  <view class="category-header">
+    <view class="brand-mark">🎡</view>
+    <view>
+      <view class="brand-title">今天玩什么？</view>
+      <view class="brand-sub">选一个玩法，把纠结交给命运</view>
+    </view>
+  </view>
+
+  <!-- 分类筛选标签 -->
+  <scroll-view class="filter-scroll" scroll-x>
+    <view class="filter-bar">
+      <view class="filter-chip {{activeCategory === '' ? 'filter-chip-active' : ''}}" data-cat="" bindtap="setCategory">全部</view>
+      <block wx:for="{{categories}}" wx:key="*this">
+        <view class="filter-chip {{activeCategory === item ? 'filter-chip-active' : ''}}" data-cat="{{item}}" bindtap="setCategory">{{item}}</view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <view class="mode-grid">
+    <block wx:for="{{filteredModes}}" wx:key="id">
+      <view class="mode-card mode-{{item.id}}" data-id="{{item.id}}" bindtap="openMode">
+        <view class="mode-card-icon">{{item.icon}}</view>
+        <view class="mode-card-name">{{item.name}}</view>
+        <view class="mode-card-desc">{{item.shortDesc}}</view>
+        <view class="mode-card-category">{{item.category}}</view>
+        <view class="mode-card-arrow">进入 →</view>
+      </view>
+    </block>
+  </view>
+
+</view>

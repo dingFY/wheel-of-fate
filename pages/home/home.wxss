@@ -1,0 +1,171 @@
+.category-page {
+  min-height: 100vh;
+  padding: 38rpx 28rpx 60rpx;
+  background: #fff7ef;
+}
+
+.category-header {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+}
+
+.brand-mark {
+  width: 78rpx;
+  height: 78rpx;
+  text-align: center;
+  line-height: 78rpx;
+  border-radius: 24rpx;
+  background: #ffcf47;
+  font-size: 44rpx;
+}
+
+.brand-title {
+  color: #241c21;
+  font-size: 46rpx;
+  font-weight: 800;
+}
+
+.brand-sub {
+  margin-top: 6rpx;
+  color: #a18578;
+  font-size: 26rpx;
+}
+
+.welcome-card {
+  position: relative;
+  overflow: hidden;
+  padding: 34rpx 30rpx;
+  margin-top: 34rpx;
+  color: #fff;
+  background: linear-gradient(135deg, #5146ba, #ee5b78);
+  border-radius: 30rpx;
+  box-shadow: 0 16rpx 32rpx rgba(81, 70, 186, .18);
+}
+
+.welcome-title {
+  font-size: 36rpx;
+  font-weight: 800;
+}
+
+.welcome-desc {
+  margin-top: 10rpx;
+  opacity: .86;
+  font-size: 24rpx;
+}
+
+.welcome-decoration {
+  position: absolute;
+  right: 42rpx;
+  top: 28rpx;
+  color: #ffd86c;
+  font-size: 72rpx;
+}
+
+.section-title {
+  margin: 38rpx 0 20rpx;
+  color: #241c21;
+  font-size: 38rpx;
+  font-weight: 800;
+}
+
+.mode-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20rpx;
+}
+
+.mode-card {
+  position: relative;
+  min-height: 244rpx;
+  padding: 24rpx;
+  overflow: hidden;
+  border-radius: 26rpx;
+  box-shadow: 0 10rpx 24rpx rgba(82, 45, 24, .07);
+}
+
+.mode-card-icon {
+  font-size: 58rpx;
+}
+
+.mode-card-name {
+  margin-top: 16rpx;
+  font-size: 36rpx;
+  font-weight: 800;
+}
+
+.mode-card-desc {
+  margin-top: 8rpx;
+  color: #806c61;
+  font-size: 26rpx;
+}
+
+.mode-card-category {
+  display: inline-block;
+  padding: 6rpx 12rpx;
+  margin-top: 14rpx;
+  color: #9b7562;
+  background: rgba(255, 255, 255, .55);
+  border-radius: 999rpx;
+  font-size: 23rpx;
+}
+
+.mode-card-arrow {
+  position: absolute;
+  right: 22rpx;
+  bottom: 22rpx;
+  color: #9e7763;
+  font-size: 25rpx;
+}
+
+.mode-bill { background: #ffe3d5; }
+.mode-eat { background: #fff0ba; }
+.mode-do { background: #dff2db; }
+.mode-starter { background: #ffe8c7; }
+.mode-coin { background: #e5e0ff; }
+.mode-number { background: #dceefa; }
+.mode-movie { background: #f1e2ff; }
+.mode-weekend { background: #d9f3ef; }
+.mode-truth { background: #ffe0e8; }
+.mode-group { background: #e7e5f8; }
+.mode-challenge { background: #fff1cf; }
+.mode-custom { background: #f8dcec; }
+.mode-blind { background: linear-gradient(135deg, #d8b4ff, #b88cff); }
+
+.category-tip {
+  margin-top: 34rpx;
+  color: #b29b8d;
+  text-align: center;
+  font-size: 22rpx;
+}
+
+/* 分类筛选 */
+.filter-scroll {
+  width: 100%;
+  margin: 28rpx 0 20rpx;
+  white-space: nowrap;
+}
+
+.filter-bar {
+  display: inline-flex;
+  gap: 14rpx;
+  padding: 4rpx 2rpx;
+}
+
+.filter-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 12rpx 28rpx;
+  color: #806c61;
+  background: #fff;
+  border: 2rpx solid #f0e4da;
+  border-radius: 999rpx;
+  font-size: 26rpx;
+  white-space: nowrap;
+}
+
+.filter-chip-active {
+  color: #fff;
+  background: #241c21;
+  border-color: #241c21;
+}

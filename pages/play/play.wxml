@@ -1,0 +1,113 @@
+<view class="bill-page">
+  <view class="top-bar">
+    <view class="brand-mark">🎲</view>
+    <view>
+      <view class="brand-title">{{modeTitle}}</view>
+      <view class="brand-sub">选好选项，让命运替你决定</view>
+    </view>
+  </view>
+
+  <view class="wheel-card">
+    <view class="wheel-stage">
+      <view class="wheel-pointer">▼</view>
+      <view class="wheel" style="background: {{wheelGradient}}; transform: translate(-50%, -50%) rotate({{wheelRotation}}deg);">
+        <view class="wheel-pointer" style="transform: translate(-50%, -100%) rotate(-{{wheelRotation}}deg);"></view>
+        <block wx:for="{{wheelItems}}" wx:key="id">
+          <view class="wheel-label" style="{{item.labelStyle}}">{{item.displayName}}</view>
+        </block>
+        <view class="wheel-center {{isDrawing ? 'wheel-center-running' : ''}} {{result ? 'wheel-center-result' : ''}}" bindtap="drawWinner">
+          {{result ? result.name : 'GO'}}
+        </view>
+      </view>
+    </view>
+    <view class="quick-result {{result ? '' : 'quick-result-hidden'}}">
+      <button class="share-result-button" bindtap="shareResult">晒结果</button>
+      <view class="quick-result-label">{{modeResultLabel}}</view>
+      <view class="quick-result-name">{{result.name}}</view>
+      <view class="quick-result-desc">{{result.desc}}</view>
+    </view>
+    <view class="wheel-caption">转一下，让命运做决定</view>
+  </view>
+
+  <canvas canvas-id="result-poster-canvas" class="poster-canvas"></canvas>
+
+  <view wx:if="{{showResultModal}}" class="result-modal-mask" catchtap="closeResultModal">
+    <view class="result-modal" catchtap="stopPropagation">
+      <view class="result-modal-tag">{{modeResultLabel}}</view>
+      <view class="result-modal-name">{{result.name}}</view>
+      <view class="result-modal-desc">{{result.desc}}</view>
+      <view class="result-modal-actions">
+        <button class="result-modal-btn result-modal-btn-again" bindtap="drawAgain">再转一次</button>
+        <button class="result-modal-btn result-modal-btn-share" bindtap="shareAndClose">晒结果</button>
+      </view>
+      <view class="result-modal-close" bindtap="closeResultModal">知道了</view>
+    </view>
+  </view>
+
+  <view class="name-panel">
+    <view class="panel-head">
+      <view class="panel-title">{{isBillMode ? '参与者' : modeListTitle}}</view>
+      <view class="panel-count">{{modeCountText}}</view>
+    </view>
+    <view wx:if="{{isBillMode}}" class="name-list">
+      <block wx:for="{{participants}}" wx:key="id">
+        <view class="name-chip">
+          <text class="name-avatar">{{item.avatar}}</text>
+          <text class="name-text">{{item.name}}</text>
+          <text class="remove-name" data-id="{{item.id}}" catchtap="removeParticipant">×</text>
+        </view>
+      </block>
+      <view class="add-chip" bindtap="showAddModal">+ 添加朋友</view>
+    </view>
+    <view wx:else class="option-list">
+      <block wx:for="{{options}}" wx:key="id">
+        <view class="option-chip">
+          <text>{{item.icon}}</text>
+          <text>{{item.name}}</text>
+          <text class="remove-name" data-id="{{item.id}}" catchtap="removeOption">×</text>
+        </view>
+      </block>
+      <view class="add-chip" bindtap="showOptionModal">+ 添加选项</view>
+    </view>
+  </view>
+
+  <button class="save-wheel-button" bindtap="showSaveModal">☆ 保存为常用转盘</button>
+
+  <view wx:if="{{showModal}}" class="modal-mask {{keyboardActive ? 'keyboard-active' : ''}}" catchtap="hideAddModal">
+    <view class="add-modal" catchtap="stopPropagation">
+      <view class="modal-title">加一位朋友</view>
+      <view class="modal-sub">输入昵称，别把自己漏掉</view>
+      <input class="name-input" focus value="{{newName}}" placeholder="例如：大A" bindinput="onNameInput" bindconfirm="addParticipant" />
+      <view class="modal-actions">
+        <button class="cancel-button" bindtap="hideAddModal">取消</button>
+        <button class="confirm-button" bindtap="addParticipant">加入本局</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showOptionModal}}" class="modal-mask {{keyboardActive ? 'keyboard-active' : ''}}" catchtap="hideOptionModal">
+    <view class="add-modal" catchtap="stopPropagation">
+      <view class="modal-title">添加选项</view>
+      <view class="modal-sub">{{optionHint}}</view>
+      <input class="name-input" maxlength="100" focus value="{{newOption}}" placeholder="可输入多个，用空格或、分隔" bindinput="onOptionInput" bindconfirm="addOption" />
+      <view class="modal-actions">
+        <button class="cancel-button" bindtap="hideOptionModal">取消</button>
+        <button class="confirm-button" bindtap="addOption">加入选项</button>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{showSaveModal}}" class="modal-mask {{keyboardActive ? 'keyboard-active' : ''}}" catchtap="hideSaveModal">
+    <view class="add-modal" catchtap="stopPropagation">
+      <view class="modal-title">保存常用转盘</view>
+      <view class="modal-sub">下次可以直接从“我的”打开</view>
+      <input class="name-input" maxlength="16" focus value="{{saveName}}" placeholder="例如：周末聚餐、团建分组" bindinput="onSaveNameInput" bindconfirm="saveCommonWheel" />
+      <view class="modal-actions">
+        <button class="cancel-button" bindtap="hideSaveModal">取消</button>
+        <button class="confirm-button" bindtap="saveCommonWheel">保存</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+

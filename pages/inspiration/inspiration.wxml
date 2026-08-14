@@ -1,0 +1,111 @@
+<view class="story-page">
+  <view class="story-header">
+    <view class="story-badge">🎭</view>
+    <view class="story-title">今天，让命运写剧本</view>
+    <view class="story-subtitle">一键生成，或自定义你的剧情</view>
+  </view>
+
+  <!-- 快速生成区 -->
+  <view class="quick-zone">
+    <button class="quick-button" bindtap="quickGenerate">
+      <text class="quick-icon">🎲</text>
+      <text class="quick-text">随机帮我决定</text>
+    </button>
+    <view class="custom-toggle" bindtap="toggleCustom">
+      <text>自定义剧情 {{showCustom ? '↑' : '↓'}}</text>
+    </view>
+  </view>
+
+  <!-- 自定义选项（默认折叠） -->
+  <view wx:if="{{showCustom}}" class="custom-zone">
+    <view class="selector-card">
+      <view class="step-title"><text>01</text> 和谁一起？</view>
+      <view class="option-row">
+        <block wx:for="{{companionOptions}}" wx:key="*this">
+          <view class="choice {{companion === item ? 'choice-active' : ''}}" data-value="{{item}}" bindtap="selectCompanion">{{item}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="selector-card">
+      <view class="step-title"><text>02</text> 想要什么感觉？</view>
+      <view class="option-row">
+        <block wx:for="{{moodOptions}}" wx:key="*this">
+          <view class="choice {{mood === item ? 'choice-active' : ''}}" data-value="{{item}}" bindtap="selectMood">{{item}}</view>
+        </block>
+      </view>
+    </view>
+    <view class="selector-card">
+      <view class="step-title"><text>03</text> 有多少时间？</view>
+      <block wx:for="{{timeGroups}}" wx:key="name">
+        <view class="time-group">
+          <view class="time-group-label">{{item.name}}</view>
+          <view class="option-row compact">
+            <block wx:for="{{item.options}}" wx:key="*this">
+              <view class="choice {{time === item ? 'choice-active' : ''}}" data-value="{{item}}" bindtap="selectTime">{{item}}</view>
+            </block>
+          </view>
+        </view>
+      </block>
+    </view>
+    <view class="advanced-toggle" bindtap="toggleAdvanced">
+      <text>⚙️ 更多设定</text><text>{{showAdvanced ? '收起 ↑' : '展开 ↓'}}</text>
+    </view>
+    <view wx:if="{{showAdvanced}}" class="advanced-card">
+      <view class="advanced-group">
+        <view class="advanced-label">天气</view>
+        <view class="option-row compact">
+          <block wx:for="{{weatherOptions}}" wx:key="*this">
+            <view class="choice small {{weather === item ? 'choice-active' : ''}}" data-field="weather" data-value="{{item}}" bindtap="selectAdvanced">{{item}}</view>
+          </block>
+        </view>
+      </view>
+      <view class="advanced-group">
+        <view class="advanced-label">预算</view>
+        <view class="option-row compact">
+          <block wx:for="{{budgetOptions}}" wx:key="*this">
+            <view class="choice small {{budget === item ? 'choice-active' : ''}}" data-field="budget" data-value="{{item}}" bindtap="selectAdvanced">{{item}}</view>
+          </block>
+        </view>
+      </view>
+      <view class="advanced-group">
+        <view class="advanced-label">出行范围</view>
+        <view class="option-row compact">
+          <block wx:for="{{rangeOptions}}" wx:key="*this">
+            <view class="choice small {{range === item ? 'choice-active' : ''}}" data-field="range" data-value="{{item}}" bindtap="selectAdvanced">{{item}}</view>
+          </block>
+        </view>
+      </view>
+      <view class="advanced-group">
+        <view class="advanced-label">同行情况</view>
+        <view class="option-row compact">
+          <block wx:for="{{travelContextOptions}}" wx:key="*this">
+            <view class="choice small {{travelContext === item ? 'choice-active' : ''}}" data-field="travelContext" data-value="{{item}}" bindtap="selectAdvanced">{{item}}</view>
+          </block>
+        </view>
+      </view>
+    </view>
+    <button class="generate-button" bindtap="generateStory">按我的设定生成</button>
+  </view>
+
+  <!-- 结果卡片 -->
+  <view wx:if="{{story}}" class="result-card">
+    <view class="result-label">{{story.tone}} · {{story.companion}} / {{story.mood}} / {{story.time}}</view>
+    <view class="result-title">{{story.title}}</view>
+    <view class="script-intro">
+      <view><text>剧情目标</text>{{story.goal}}</view>
+    </view>
+    <view class="script-meta">
+      <text>{{story.budgetText}}</text>
+      <text>{{story.durationText}}</text>
+      <text>{{story.weather}} · 实际范围：{{story.travelRange}} · {{story.travelContext}}</text>
+    </view>
+    <view class="narrative"><view>导演旁白</view>"{{story.narrative}}"</view>
+    <view class="result-actions">
+      <button class="accept-button" bindtap="acceptStory">{{accepted ? '✓ 已收下' : '接受命运'}}</button>
+      <button class="reroll-button" bindtap="reroll">换一个 🎲</button>
+      <button class="poster-button" bindtap="shareStory">存图</button>
+    </view>
+  </view>
+
+  <canvas canvas-id="story-poster-canvas" class="poster-canvas"></canvas>
+</view>

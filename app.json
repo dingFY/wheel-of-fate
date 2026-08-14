@@ -1,0 +1,40 @@
+{
+    "pages":  [
+                  "pages/home/home",
+                  "pages/inspiration/inspiration",
+                  "pages/play/play",
+                  "pages/profile/profile"
+              ],
+    "window":  {
+                   "navigationBarTitleText":  "转盘部落",
+                   "navigationBarBackgroundColor":  "#ffffff",
+                   "navigationBarTextStyle":  "black",
+                   "backgroundColor":  "#f7f3ec"
+               },
+    "tabBar":  {
+                   "color":  "#8a8a8a",
+                   "selectedColor":  "#ef6b3a",
+                   "backgroundColor":  "#ffffff",
+                   "borderStyle":  "white",
+                   "list":  [
+                                {
+                                    "pagePath":  "pages/home/home",
+                                    "text":  "首页"
+                                },
+                                {
+                                    "pagePath":  "pages/inspiration/inspiration",
+                                    "text":  "剧情"
+                                },
+                                {
+                                    "pagePath":  "pages/profile/profile",
+                                    "text":  "我的"
+                                }
+                            ]
+               },
+    "style":  "v2",
+    "networkTimeout":  {
+                           "request":  10000,
+                           "downloadFile":  10000
+                       },
+    "sitemapLocation":  "sitemap.json"
+}
