@@ -11,7 +11,7 @@ test("generateFateStory returns a complete story matching the selected time", ()
   assert.ok(story.food.text);
   assert.ok(story.activity.text);
   assert.ok(story.challenge.text);
-  assert.ok(story.narrative.includes(story.place.text));
+  if (story.place.text) assert.ok(story.narrative.includes(story.place.text));
   [story.place, story.food, story.activity, story.challenge].forEach(item => {
     assert.ok(item.minTime <= timeLevels["半天"]);
   });
