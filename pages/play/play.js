@@ -499,31 +499,15 @@ Page({
 
     ctx.setTextAlign("left");
 
-    // 二维码背景
+    // 绘制真实小程序码
     const qrX = 548;
     const qrY = 790;
     const qrSize = 126;
+    // 白色背景
     ctx.setFillStyle("#ffffff");
     ctx.fillRect(qrX - 12, qrY - 12, qrSize + 24, qrSize + 24);
-    const drawFinder = (x, y) => {
-      ctx.setFillStyle("#241c21");
-      ctx.fillRect(x, y, 34, 34);
-      ctx.setFillStyle("#ffffff");
-      ctx.fillRect(x + 6, y + 6, 22, 22);
-      ctx.setFillStyle("#241c21");
-      ctx.fillRect(x + 12, y + 12, 10, 10);
-    };
-    drawFinder(qrX, qrY);
-    drawFinder(qrX + 92, qrY);
-    drawFinder(qrX, qrY + 92);
-    ctx.setFillStyle("#241c21");
-    const qrDots = [
-      [48, 8], [60, 8], [72, 8], [48, 20], [72, 20], [48, 32], [60, 32],
-      [48, 50], [60, 50], [72, 50], [84, 50], [36, 62], [60, 62], [84, 62],
-      [96, 62], [36, 74], [48, 74], [72, 74], [96, 74], [48, 86], [72, 86],
-      [84, 86], [96, 86], [60, 98], [72, 98], [84, 98], [108, 98], [108, 110]
-    ];
-    qrDots.forEach(([x, y]) => ctx.fillRect(qrX + x, qrY + y, 8, 8));
+    // 绘制小程序码图片
+    ctx.drawImage("/images/mini-qrcode.jpg", qrX, qrY, qrSize, qrSize);
 
     ctx.setFillStyle("rgba(255,255,255,.86)");
     ctx.setFontSize(22);

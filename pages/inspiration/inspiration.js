@@ -119,7 +119,7 @@ Page({
     const story = this.data.story;
     if (!story) return;
     const ctx = wx.createCanvasContext("story-poster-canvas", this);
-    const canvasH = 900;
+    const canvasH = 1040;
     // 渐变背景
     const gradient = ctx.createLinearGradient(0, 0, 750, canvasH);
     gradient.addColorStop(0, "#6f5ce7");
@@ -160,9 +160,15 @@ Page({
     ctx.setFillStyle("#f0e6df"); ctx.fillRect(78, cardY + cardH - 70, 594, 2);
     ctx.setFillStyle("#9b7881"); ctx.setFontSize(21);
     ctx.fillText(`${story.budgetText} · ${story.durationText}`, 78, cardY + cardH - 30);
-    // 底部品牌
+    // 底部品牌与小程序码
     ctx.setFillStyle("rgba(255,255,255,.9)"); ctx.setFontSize(23);
-    ctx.fillText("转盘部落 · 命运已经写好，只管出发", 54, canvasH - 40);
+    ctx.fillText("转盘部落 · 命运已经写好，只管出发", 54, 875);
+    ctx.setFillStyle("rgba(255,255,255,.78)"); ctx.setFontSize(20);
+    ctx.fillText("扫码打开小程序，再写一段命运剧情", 54, 920);
+    const qrX = 548, qrY = 842, qrSize = 126;
+    ctx.setFillStyle("#ffffff");
+    ctx.fillRect(qrX - 12, qrY - 12, qrSize + 24, qrSize + 24);
+    ctx.drawImage("/images/mini-qrcode.jpg", qrX, qrY, qrSize, qrSize);
     ctx.draw(false, () => {
       wx.canvasToTempFilePath({
         canvasId: "story-poster-canvas", width: 750, height: canvasH, destWidth: 1500, destHeight: canvasH * 2,
